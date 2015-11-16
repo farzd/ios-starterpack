@@ -1,4 +1,7 @@
 import React from 'react-native';
+import FBSDKLogin from 'react-native-fbsdklogin';
+const { FBSDKLoginButton } = FBSDKLogin;
+
 const { AppRegistry, StyleSheet, Text, View } = React;
 const styles = StyleSheet.create({
     container: {
@@ -22,16 +25,21 @@ class starterpack extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                    To get started, edit index.ios.js
-                </Text>
-                <Text style={styles.instructions}>
-                    Press Cmd+R to reload,{'\n'}
-                    Cmd+D or shake for dev menu
-                </Text>
+                <FBSDKLoginButton
+                         onLoginFinished={(error, result) => {
+                           if (error) {
+                             alert('Error logging in.');
+                           } else {
+                             if (result.isCancelled) {
+                               alert('Login cancelled.');
+                             } else {
+                               alert('Logged in.');
+                             }
+                           }
+                         }}
+                         onLogoutFinished={() => alert('Logged out.')}
+                         readPermissions={[]}
+                         publishPermissions={['publish_actions']}/>
             </View>
         );
     }
