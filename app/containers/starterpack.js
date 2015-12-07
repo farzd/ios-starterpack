@@ -8,19 +8,18 @@ const { StyleSheet, View, Text, TouchableOpacity } = React;
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
-        justifyContent: 'flex-start',
+        flexDirection: 'column',
         marginTop: 20,
         alignItems: 'center',
         backgroundColor: '#2c3e50',
         position: 'relative'
     },
     button: {
-        marginTop: 40,
-        position: 'absolute',
-        left: 100
+        fontSize: 30,
+        color: '#00FF00'
     },
     text: {
-        fontSize: 30,
+        fontSize: 20,
         color: '#e74c3c'
     }
 });
@@ -28,22 +27,20 @@ const styles = StyleSheet.create({
 class starterpack extends Component {
     render() {
         const { actions, login } = this.props;
-        let loginText = null;
-        let loginId = null;
-        if (login.loggingIn) {
-            loginText = 'logging in...';
-        }
-        if (login.id) {
-            loginId = 'LOGIN ID=' + login.id;
-        }
         return (
             <View style={styles.wrapper}>
-
-                <TouchableOpacity style={styles.button} onPress={() => actions.login()}>
-                        <Text style={styles.text}>log in</Text>
+            { login.loggedIn ?
+                <View>
+                <Text style={styles.text}>login ID: {login.id}</Text>
+                <TouchableOpacity onPress={() => actions.logout()}>
+                        <Text style={styles.button}>logout</Text>
                 </TouchableOpacity>
-                <Text style={styles.text}>{loginText}</Text>
-                <Text style={styles.text}>{loginId}</Text>
+                </View> :
+                <TouchableOpacity onPress={() => actions.login()}>
+                    <Text style={styles.button}>log in</Text>
+                </TouchableOpacity> }
+
+                { login.loading ? <Text style={styles.text}>loading...</Text> : null }
             </View>
         );
     }

@@ -1,16 +1,22 @@
-function loginReducer(state = {loggingIn: false, id: null}, action) {
+function loginReducer(state = {loading: false, loggedIn: false, id: null}, action) {
     switch (action.type) {
-    case 'ATTEMPTING_LOGIN':
+    case 'LOADING':
         return Object.assign({}, state, {
-            loggingIn: true,
+            loading: true,
         });
 
     case 'LOGIN':
         return Object.assign({}, state, {
-            loggingIn: false,
-            id: action.id
+            loading: false,
+            loggedIn: true,
+            id: action.id,
         });
 
+    case 'LOGOUT':
+        return Object.assign({}, state, {
+            loading: false,
+            loggedIn: false
+        });
     default:
         return state;
     }

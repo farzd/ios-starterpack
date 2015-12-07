@@ -1,6 +1,6 @@
-export function attemptingLogin() {
+export function attempt() {
     return {
-        type: 'ATTEMPTING_LOGIN'
+        type: 'LOADING'
     };
 }
 
@@ -11,7 +11,7 @@ export function loggedin(id) {
     };
 }
 
-export function logout() {
+export function loggedout() {
     return {
         type: 'LOGOUT'
     };
@@ -19,10 +19,20 @@ export function logout() {
 
 export function login() {
     return dispatch => {
-        dispatch(attemptingLogin());
+        dispatch(attempt());
 
         setTimeout(function timeout() {
             dispatch(loggedin(1234));
+        }, 1000);
+    };
+}
+
+export function logout() {
+    return dispatch => {
+        dispatch(attempt());
+
+        setTimeout(function timeout() {
+            dispatch(loggedout());
         }, 1000);
     };
 }
