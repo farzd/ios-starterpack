@@ -1,28 +1,28 @@
-import React, { Component } from 'react-native';
+import React, { Component, PropTypes } from 'react-native';
 import { connect } from 'react-redux/native';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
 
 const { StyleSheet, View, Text, TouchableOpacity } = React;
 
-var styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    marginTop: 20,
-    alignItems: 'center',
-    backgroundColor: '#2c3e50',
-    position: 'relative'
-  },
-  button: {
-    marginTop: 40,
-      position: 'absolute',
-      left: 100,
-  },
-  text: {
-    fontSize: 30,
-    color: '#e74c3c'
-  }
+const styles = StyleSheet.create({
+    wrapper: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        marginTop: 20,
+        alignItems: 'center',
+        backgroundColor: '#2c3e50',
+        position: 'relative'
+    },
+    button: {
+        marginTop: 40,
+        position: 'absolute',
+        left: 100
+    },
+    text: {
+        fontSize: 30,
+        color: '#e74c3c'
+    }
 });
 
 class starterpack extends Component {
@@ -31,10 +31,10 @@ class starterpack extends Component {
         let loginText = null;
         let loginId = null;
         if (login.loggingIn) {
-            loginText= 'logging in...';
+            loginText = 'logging in...';
         }
         if (login.id) {
-            loginId= 'LOGIN ID=' + login.id;
+            loginId = 'LOGIN ID=' + login.id;
         }
         return (
             <View style={styles.wrapper}>
@@ -48,6 +48,11 @@ class starterpack extends Component {
         );
     }
 }
+
+starterpack.propTypes = {
+    login: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
+};
 
 function mapStateToProps(state) {
     return {

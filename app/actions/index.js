@@ -18,12 +18,11 @@ export function logout() {
 }
 
 export function login() {
-  return dispatch => {
-    dispatch(attemptingLogin())
+    return dispatch => {
+        dispatch(attemptingLogin());
 
-    setTimeout(function () {
-        dispatch(loggedin(1234));
-    }, 1000);
-
-  }
+        setTimeout(function timeout() {
+            dispatch(loggedin(1234));
+        }, 1000);
+    };
 }
