@@ -1,7 +1,10 @@
 import FBSDKLogin from 'react-native-fbsdklogin';
 import FBSDKCore from 'react-native-fbsdkcore';
+import config from '../configuration';
+
 const { FBSDKLoginManager} = FBSDKLogin;
 const { FBSDKGraphRequest } = FBSDKCore;
+const { facebookReadPermissions } = config;
 
 function getInfo() {
     return new Promise((resolve, reject) => {
@@ -18,7 +21,7 @@ function getInfo() {
 
 export function facebookLogin() {
     return new Promise((resolve, reject) => {
-        FBSDKLoginManager.logInWithReadPermissions(['public_profile', 'email', 'user_friends'], (error, result) => {
+        FBSDKLoginManager.logInWithReadPermissions(facebookReadPermissions, (error, result) => {
             if (error) {
                 reject('error', error);
             } else {
