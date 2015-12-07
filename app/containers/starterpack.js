@@ -3,7 +3,7 @@ import { connect } from 'react-redux/native';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
 
-const { StyleSheet, View, Text, TouchableOpacity } = React;
+const { StyleSheet, View, Text, Image, TouchableOpacity } = React;
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -11,16 +11,17 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         marginTop: 20,
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
-        position: 'relative'
+        backgroundColor: '#EF6C00',
+        position: 'relative',
+        justifyContent: 'center'
     },
     button: {
         fontSize: 30,
-        color: '#00FF00'
+        color: '#01579B',
     },
     text: {
         fontSize: 20,
-        color: '#e74c3c'
+        color: '#01579B'
     }
 });
 
@@ -37,9 +38,8 @@ class starterpack extends Component {
                 </TouchableOpacity>
                 </View> :
                 <TouchableOpacity onPress={() => actions.login()}>
-                    <Text style={styles.button}>log in</Text>
+                    <Image style={styles.button} source={require('./assets/fb-login-button.png')}/>
                 </TouchableOpacity> }
-
                 { login.loading ? <Text style={styles.text}>loading...</Text> : null }
             </View>
         );
