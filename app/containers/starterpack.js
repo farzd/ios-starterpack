@@ -31,7 +31,7 @@ class starterpack extends Component {
             <View style={styles.wrapper}>
             { login.loggedIn ?
                 <View>
-                <Text style={styles.text}>login ID: {login.id}</Text>
+                <Text style={styles.text}>welcome {login.name}({login.id})</Text>
                 <TouchableOpacity onPress={() => actions.logout()}>
                         <Text style={styles.button}>logout</Text>
                 </TouchableOpacity>

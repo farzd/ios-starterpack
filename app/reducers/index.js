@@ -1,4 +1,4 @@
-function loginReducer(state = {loading: false, loggedIn: false, id: null}, action) {
+function loginReducer(state = {loading: false, loggedIn: false, id: null, name: null}, action) {
     switch (action.type) {
     case 'LOADING':
         return Object.assign({}, state, {
@@ -10,6 +10,7 @@ function loginReducer(state = {loading: false, loggedIn: false, id: null}, actio
             loading: false,
             loggedIn: true,
             id: action.id,
+            name: action.name
         });
 
     case 'LOGOUT':
