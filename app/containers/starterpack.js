@@ -25,13 +25,15 @@ const styles = StyleSheet.create({
 class starterpack extends Component {
     render() {
         const { actions, login } = this.props;
+        let loginComponent = <Login onPress={() => actions.login()} />;
+        let profileComponent = <Profile onPress={() => actions.logout()} login={login} />;
+        if (login.loading) {
+            loginComponent = <ActivityIndicatorIOS size="large" color="#3b5998" />;
+            profileComponent = <ActivityIndicatorIOS size="large" color="#3b5998" />;
+        }
         return (
             <View style={styles.wrapper}>
-            { login.loggedIn ?
-                login.loading ? <ActivityIndicatorIOS size="large" color="#3b5998" /> : <Profile onPress={() => actions.logout()} login={login} />
-                :
-                login.loading ? <ActivityIndicatorIOS size="large" color="#3b5998" /> : <Login onPress={() => actions.login()} />
-            }
+            { login.loggedIn ? profileComponent : loginComponent }
             </View>
         );
     }
