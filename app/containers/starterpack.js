@@ -5,7 +5,7 @@ import * as actionCreators from '../actions';
 import Login from '../components/login/login';
 import Profile from '../components/profile/profile';
 
-const { StyleSheet, View, Text } = React;
+const { StyleSheet, View, ActivityIndicatorIOS } = React;
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -28,9 +28,10 @@ class starterpack extends Component {
         return (
             <View style={styles.wrapper}>
             { login.loggedIn ?
-                <Profile onPress={() => actions.logout()} login={login} /> :
-                <Login onPress={() => actions.login()} /> }
-                { login.loading ? <Text style={styles.text}>loading...</Text> : null }
+                login.loading ? <ActivityIndicatorIOS size="large" color="#3b5998" /> : <Profile onPress={() => actions.logout()} login={login} />
+                :
+                login.loading ? <ActivityIndicatorIOS size="large" color="#3b5998" /> : <Login onPress={() => actions.login()} />
+            }
             </View>
         );
     }
