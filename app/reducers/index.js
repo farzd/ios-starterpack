@@ -1,4 +1,4 @@
-function loginReducer(state = {loading: false, loggedIn: false, id: null, name: null}, action) {
+function loginReducer(state = {loading: false, loggedIn: false, id: null, name: null, profileURL: null, profileWidth: null, profileHeight: null}, action) {
     switch (action.type) {
     case 'LOADING':
         return Object.assign({}, state, {
@@ -10,7 +10,10 @@ function loginReducer(state = {loading: false, loggedIn: false, id: null, name: 
             loading: false,
             loggedIn: true,
             id: action.id,
-            name: action.name
+            name: action.name,
+            profileURL: action.profileURL,
+            profileWidth: action.profileWidth,
+            profileHeight: action.profileHeight
         });
 
     case 'LOGOUT':
@@ -18,6 +21,7 @@ function loginReducer(state = {loading: false, loggedIn: false, id: null, name: 
             loading: false,
             loggedIn: false
         });
+
     default:
         return state;
     }

@@ -6,11 +6,14 @@ export function attempt() {
     };
 }
 
-export function loggedin(id, name) {
+export function loggedin(id, name, profileURL, profileWidth, profileHeight) {
     return {
         type: 'LOGIN',
         id,
-        name
+        name,
+        profileURL,
+        profileWidth,
+        profileHeight,
     };
 }
 
@@ -24,7 +27,7 @@ export function login() {
     return dispatch => {
         dispatch(attempt());
         facebookLogin().then((result) => {
-            dispatch(loggedin(result.id, result.name));
+            dispatch(loggedin(result.id, result.name, result.picture.data.url, result.picture.data.width, result.picture.data.height));
         }).catch(() => {
             // log error to user
             dispatch(loggedout());

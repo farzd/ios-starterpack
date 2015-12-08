@@ -14,7 +14,7 @@ function getInfo() {
             } else {
                 resolve(result);
             }
-        }, '/me/');
+        }, '/me/?fields=name,picture.width(300)');
         fetchFriendsRequest.start();
     });
 }
