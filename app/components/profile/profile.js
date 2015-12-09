@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class Login extends Component {
+export default class Profile extends Component {
     render() {
         return (
             <View>
-                <Text style={styles.text}>{this.props.login.name}</Text>
-                <Image source={{uri: this.props.login.profileURL}} style={{width: this.props.login.profileWidth, height: this.props.login.profileHeight}}/>
+                <Text style={styles.text}>{this.props.profile.name}</Text>
+                <Image source={{uri: this.props.profile.profileURL}} style={{width: this.props.profile.profileWidth, height: this.props.profile.profileHeight}}/>
                 <TouchableOpacity onPress={this.props.onPress}>
                         <Text style={styles.text}>logout</Text>
                 </TouchableOpacity>
@@ -22,7 +22,7 @@ export default class Login extends Component {
     }
 }
 
-Login.propTypes = {
+Profile.propTypes = {
     onPress: PropTypes.func.isRequired,
-    login: PropTypes.object.isRequired
+    profile: PropTypes.object.isRequired
 };

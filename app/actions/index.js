@@ -6,14 +6,16 @@ export function attempt() {
     };
 }
 
-export function loggedin(id, name, profileURL, profileWidth, profileHeight) {
+export function errors(err) {
+    return {
+        type: 'ERROR',
+        err
+    };
+}
+
+export function loggedin() {
     return {
         type: 'LOGIN',
-        id,
-        name,
-        profileURL,
-        profileWidth,
-        profileHeight,
     };
 }
 
@@ -23,14 +25,25 @@ export function loggedout() {
     };
 }
 
+export function addUser(id, name, profileURL, profileWidth, profileHeight) {
+    return {
+        type: 'ADD_USER',
+        id,
+        name,
+        profileURL,
+        profileWidth,
+        profileHeight
+    };
+}
+
 export function login() {
     return dispatch => {
         dispatch(attempt());
         facebookLogin().then((result) => {
-            dispatch(loggedin(result.id, result.name, result.picture.data.url, result.picture.data.width, result.picture.data.height));
-        }).catch(() => {
-            // log error to user
-            dispatch(loggedout());
+            dispatch(loggedin());
+            dispatch(addUser(result.id, result.name, result.picture.data.url, result.picture.data.width, result.picture.data.height));
+        }).catch((err) => {
+            dispatch(errors(err));
         });
     };
 }

@@ -5,7 +5,7 @@ import * as actionCreators from '../actions';
 import Login from '../components/login/login';
 import Profile from '../components/profile/profile';
 
-const { StyleSheet, View, ActivityIndicatorIOS } = React;
+const { StyleSheet, View, Text, ActivityIndicatorIOS } = React;
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -24,9 +24,14 @@ const styles = StyleSheet.create({
 
 class starterpack extends Component {
     render() {
-        const { actions, login } = this.props;
+        const { actions, login, profile } = this.props;
+        let profileComponent = <Profile onPress={() => actions.logout()} profile={profile} />;
         let loginComponent = <Login onPress={() => actions.login()} />;
-        let profileComponent = <Profile onPress={() => actions.logout()} login={login} />;
+
+        if (login.error) {
+            loginComponent = <View><Login onPress={() => actions.login()} /><Text style={styles.text}>{login.error}</Text></View>;
+        }
+
         if (login.loading) {
             loginComponent = <ActivityIndicatorIOS size="large" color="#3b5998" />;
             profileComponent = <ActivityIndicatorIOS size="large" color="#3b5998" />;
@@ -41,12 +46,14 @@ class starterpack extends Component {
 
 starterpack.propTypes = {
     login: PropTypes.object.isRequired,
+    profile: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        login: state.login
+        login: state.login,
+        profile: state.profile
     };
 }
 

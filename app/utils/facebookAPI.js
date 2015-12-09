@@ -10,7 +10,7 @@ function getInfo() {
     return new Promise((resolve, reject) => {
         const fetchFriendsRequest = new FBSDKGraphRequest((error, result) => {
             if (error) {
-                reject('Error making request.', error);
+                reject('error making request. ' + error);
             } else {
                 resolve(result);
             }
@@ -23,10 +23,10 @@ export function facebookLogin() {
     return new Promise((resolve, reject) => {
         FBSDKLoginManager.logInWithReadPermissions(facebookReadPermissions, (error, result) => {
             if (error) {
-                reject('error', error);
+                reject('error: '+error);
             } else {
                 if (result.isCancelled) {
-                    reject('cancelled');
+                    reject('error: login cancelled');
                 } else {
                     getInfo().then((userDetails) => {
                         resolve(userDetails);
