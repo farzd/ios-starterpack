@@ -11,4 +11,4 @@ npm start to run
 6. Make sure plist has facebook app id and allows required NSAppTransportSecurity[Copy from Sample in react-native-fbsdk]
 7. Update Appdelegate.m [Copy from Sample in react-native-fbsdk]
 
-![alt text](http://i.imgur.com/5n08nGd.png, 'screenshot')
+![alt text](http://i.imgur.com/VDNjicp.gifv, 'screenshot')
