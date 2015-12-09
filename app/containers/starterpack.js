@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     }
 });
 
-class starterpack extends Component {
+class Starterpack extends Component {
     render() {
         const { actions, login, profile } = this.props;
         let profileComponent = <Profile onPress={() => actions.logout()} profile={profile} />;
@@ -44,7 +44,7 @@ class starterpack extends Component {
     }
 }
 
-starterpack.propTypes = {
+Starterpack.propTypes = {
     login: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
@@ -63,4 +63,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(starterpack);
+export default connect(mapStateToProps, mapDispatchToProps)(Starterpack);

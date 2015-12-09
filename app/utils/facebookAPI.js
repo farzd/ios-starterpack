@@ -1,10 +1,9 @@
 import FBSDKLogin from 'react-native-fbsdklogin';
 import FBSDKCore from 'react-native-fbsdkcore';
-import config from '../configuration';
+import * as config from '../configuration';
 
 const { FBSDKLoginManager} = FBSDKLogin;
 const { FBSDKGraphRequest } = FBSDKCore;
-const { facebookReadPermissions } = config;
 
 function getInfo() {
     return new Promise((resolve, reject) => {
@@ -14,16 +13,16 @@ function getInfo() {
             } else {
                 resolve(result);
             }
-        }, '/me/?fields=name,picture.width(300)');
+        }, config.facebookUserRequest);
         fetchFriendsRequest.start();
     });
 }
 
 export function facebookLogin() {
     return new Promise((resolve, reject) => {
-        FBSDKLoginManager.logInWithReadPermissions(facebookReadPermissions, (error, result) => {
+        FBSDKLoginManager.logInWithReadPermissions(config.facebookReadPermissions, (error, result) => {
             if (error) {
-                reject('error: '+error);
+                reject('error: ' + error);
             } else {
                 if (result.isCancelled) {
                     reject('error: login cancelled');
