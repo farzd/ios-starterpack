@@ -9,3 +9,5 @@ React-native, Redux, [Facebook Login](https://github.com/facebook/react-native-f
 npm start to run
 
 ![alt text](http://i.imgur.com/VDNjicp.gif, 'screenshot')
+
+Coming soon: Yeomen generator
