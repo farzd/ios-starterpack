@@ -10,8 +10,8 @@ import StarterPack from './starterpack';
 const loggerMiddleware = createLogger();
 
 const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware, // lets us dispatch() functions
-  loggerMiddleware // neat middleware that logs actions
+  thunkMiddleware, 
+  loggerMiddleware
 )(createStore);
 
 const store = createStoreWithMiddleware(reducer);
