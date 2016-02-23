@@ -1,6 +1,6 @@
 import FBSDKLogin from 'react-native-fbsdklogin';
 import FBSDKCore from 'react-native-fbsdkcore';
-import * as config from '../configuration';
+import { config } from '../configuration';
 
 const { FBSDKLoginManager} = FBSDKLogin;
 const { FBSDKGraphRequest } = FBSDKCore;
